@@ -83,7 +83,8 @@ class MeetingComponentV2(base.BaseComponent):
     
     def update_registrant_status(self, **kwargs):
         util.require_keys(kwargs, "id")
-        return self.put_request("/meetings/{}/registrants/status".format(kwargs.get("id")), params=kwargs)
+        id = kwargs.pop("id")
+        return self.put_request("/meetings/{}/registrants/status".format(id), data=kwargs)
     
     def list_meeting_participants(self, **kwargs):
         util.require_keys(kwargs, "id")
